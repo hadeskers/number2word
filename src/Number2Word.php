@@ -66,7 +66,7 @@ class Number2Word
             return false;
         }
         if ($number < 0) {
-            return $negative . convert_number_to_words(abs($number));
+            return $negative . self::_convert(abs($number));
         }
         $string = $fraction = null;
         if (strpos($number, '.') !== false) {
@@ -89,17 +89,17 @@ class Number2Word
                 $remainder = $number % 100;
                 $string = $dictionary[$hundreds] . ' ' . $dictionary[100];
                 if ($remainder) {
-                    $string .= $conjunction . convert_number_to_words($remainder);
+                    $string .= $conjunction . self::_convert($remainder);
                 }
                 break;
             default:
                 $baseUnit = pow(1000, floor(log($number, 1000)));
                 $numBaseUnits = (int)($number / $baseUnit);
                 $remainder = $number % $baseUnit;
-                $string = convert_number_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit];
+                $string = self::_convert($numBaseUnits) . ' ' . $dictionary[$baseUnit];
                 if ($remainder) {
                     $string .= $remainder < 100 ? $conjunction : $separator;
-                    $string .= convert_number_to_words($remainder);
+                    $string .= self::_convert($remainder);
                 }
                 break;
         }
