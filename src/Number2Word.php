@@ -11,7 +11,7 @@ namespace Hadesker\Number2Word;
 
 class Number2Word
 {
-    private static function _convert()
+    private static function _convert($number)
     {
         $hyphen = ' ';
         $conjunction = '  ';
@@ -114,7 +114,7 @@ class Number2Word
         return $string;
     }
 
-    public static function ConvertToWord(int $number = null, $case = MB_CASE_LOWER)
+    public static function ConvertToWord(float $number = null, $case = MB_CASE_LOWER)
     {
         $str = self::_convert($number);
         return mb_convert_case($str, $case, "UTF-8");
